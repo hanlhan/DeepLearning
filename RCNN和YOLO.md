@@ -13,7 +13,7 @@
 
 4）：进行回归分析调整region proposal区域。
 
-![image-20210713144457377](/home/allen/.config/Typora/typora-user-images/image-20210713144457377.png)
+![image-20210713144457377](./images/image-20210713144457377.png)
 
 
 
@@ -27,7 +27,7 @@
 
 4）feature factor被送往FC（fully-connected layer），被映射到两个部分，一部分是评估k个目标类加上catch-all"背景"类的softmax probability；另一部分产生bbox regressor，即针对k个目标对象的每一个4值真值数量（4 real-valued numbers），每个4值编码集合（set of 4 values）K类目标对象之一的bounding-box位置。
 
-![image-20210713144610270](/home/allen/.config/Typora/typora-user-images/image-20210713144610270.png)
+![image-20210713144610270](./images/image-20210713144610270.png)
 
 # YOLO v1
 
@@ -37,7 +37,7 @@
 
 3）每个bounding box要预测(x, y, w, h)和confidence共5个值，每个网格还要预测一个类别信息，记为C类。则SxS个网格，每个网格要预测B个bounding box还要预测C个categories
 
-<img src="/home/allen/.config/Typora/typora-user-images/image-20210713145250203.png" alt="image-20210713145250203" style="zoom:50%;" />
+<img src="./images/image-20210713145250203.png" alt="image-20210713145250203" style="zoom:50%;" />
 
 ## yolov1的缺点：
 
@@ -63,7 +63,7 @@ YOLO对相互靠的很近的物体，还有很小的群体 检测效果不好，
 
 3）：最后将该低维向量送入两个全连接层，即box回归层和box分类层。
 
-<img src="/home/allen/.config/Typora/typora-user-images/image-20210713144653710.png" alt="image-20210713144653710" style="zoom:67%;" />
+<img src="./images/image-20210713144653710.png" alt="image-20210713144653710" style="zoom:67%;" />
 
 
 
@@ -71,13 +71,13 @@ YOLO对相互靠的很近的物体，还有很小的群体 检测效果不好，
 
 1)yolo 是 one stage 算法的开篇之作，它并没有真正的去掉候选区，而是划分了“负责”区域（7\(\times\)7 个网格）。在每个“负责”区域会预测两个 bbox ，所以一共会预测 98 个 bbox。RCNN 系列是先通过算法找到候选区，然后对候选区进行**边框回归**，得到最终的 bbox。yolov1 则是直接对负责区域直接进行判别和回归，一步到位的 bbox。
 
-![image-20210713165737405](/home/allen/.config/Typora/typora-user-images/image-20210713165737405.png)
+![image-20210713165737405](./images/image-20210713165737405.png)
 
 # YOLOV2
 
 YoloV2 的最大不同在于引入了 \(V2\) 这个模块（这个名字是我自己起的）这个模块的目的期望减少 feature map 空间维度的同时尽量不损失信息。而且它具有了 split transform merge 的形式，一定程度上开始有了特征融合的感觉。最后是网络的输出 tensor
 
-![image-20210713172052155](/home/allen/.config/Typora/typora-user-images/image-20210713172052155.png)
+![image-20210713172052155](./images/image-20210713172052155.png)
 
 # YOLOV3
 
@@ -91,7 +91,7 @@ YoloV3 采用和 YoloV2 同样的 gd 编码方式。并也采用了 anchor 的�
 - 更好的基础分类网络（darknet-53, 类似于ResNet引入残差结构）。
 - 分类器不在使用Softmax，分类损失采用binary cross-entropy loss（二分类交叉损失熵）
 
-![image-20210713172204118](/home/allen/.config/Typora/typora-user-images/image-20210713172204118.png)
+![image-20210713172204118](./images/image-20210713172204118.png)
 
 # YOLOV4
 
@@ -110,7 +110,7 @@ YOLOv4 = CSPDarknet53+SPP+PAN+YOLOv3
 - 用于检测器的BoF：CIoU-loss，CmBN，DropBlock正则化，Mosaic数据增强，Self-Adversarial 训练，消除网格敏感性，对单个ground-truth使用多个anchor，Cosine annealing scheduler，最佳超参数，Random training shapes
 - 用于检测器的Bos：Mish激活函数，SPP，SAM，PAN，DIoU-NMS
 
-![image-20210713172341373](/home/allen/.config/Typora/typora-user-images/image-20210713172341373.png)
+![image-20210713172341373](./images/image-20210713172341373.png)
 
 # YOLOV5
 
